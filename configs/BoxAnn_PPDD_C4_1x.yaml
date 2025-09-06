@@ -1,0 +1,10 @@
+_BASE_: "./Base_PPDD_C4_1x.yaml"
+MODEL:
+  ROI_BOX_HEAD:
+    ADD_BOX_FEATURES_PREDICTION: False
+DATASETS:
+  TEST: ("ppdd_ovad_boxann", )
+TEST:
+  DETECTIONS_PER_IMAGE: 300
+
+  

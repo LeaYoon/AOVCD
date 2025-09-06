@@ -1,0 +1,49 @@
+MODEL:
+  META_ARCHITECTURE: "CustomRCNN"
+  RPN:
+    PRE_NMS_TOPK_TEST: 6000
+    POST_NMS_TOPK_TEST: 1000
+  # TEST_CLASSIFIERS: ['datasets/metadata/ovad_obj_clip-ViT-B32_none+cname.npy']
+  TEST_CLASSIFIERS: ['./output/ovad_cls_att_features/ovad_obj_cls_clipViT-B32_photo+cname.npy', './output/ovad_cls_att_features/ovad_att_clip-ViT-B32_photocrack+catt.npy']
+  TEST_ATTRIBUTE_CLASSIFIERS: ['./output/ovad_cls_att_features/ovad_att_clip-ViT-B32_photocrack+catt.npy']
+  TEST_NUM_CLASSES: [6]
+  ROI_HEADS:
+    NAME: "CustomRes5ROIHeads"
+    NUM_CLASSES: 6
+    NUM_ATTRIBUTES: 18
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  RESNETS:
+    DEPTH: 50
+  ROI_BOX_HEAD:
+    NAME: "EmbeddingFastRCNNOutputLayers" # for call in ./ovad-benchmark-code/ovadb/modeling/roi_heads/box_heads/__init__.py 
+    PREDICTOR_NAME: "EmbeddingFastRCNNOutputLayers"
+    CLS_AGNOSTIC_BBOX_REG: True
+    USE_SIGMOID_CE: True
+    USE_ZEROSHOT_CLS: True
+    USE_ATTRIBUTE_CLS: True # att align
+    ZEROSHOT_WEIGHT_PATH: './output/ovad_cls_att_features/ovad_obj_cls_clipViT-B32_photo+cname.npy'
+    ATTRIBUTE_WEIGHT_PATH: './output/ovad_cls_att_features/ovad_att_clip-ViT-B32_photocrack+catt.npy'
+    IGNORE_ZERO_CATS: False
+    CAT_FREQ_PATH: ''
+DATASETS:
+  TRAIN: ("ppdd_ovd_train_base",)
+  TEST: ("ppdd_ovd_test_all",)
+DATALOADER:
+  NUM_WORKERS: 0 
+SOLVER:
+  IMS_PER_BATCH: 16
+  BASE_LR: 0.02
+  WARMUP_ITERS: 1000
+  STEPS: (60000, 80000)
+  MAX_ITER: 90000
+  CHECKPOINT_PERIOD: 10000 # 1000000000
+INPUT:
+  MIN_SIZE_TRAIN: (800,)
+  REMAP_CATEGORY_ID: True
+  REMAP_CATEGORY_MAP: [0, 1, 4, 5, 2, 3]
+VERSION: 2
+OUTPUT_DIR: output/OVAD_PPDD/open_vocab_det/auto
+FP16: True
+SEED: 25111839
+# TEST:
+  # EVAL_INIT: False
