@@ -4,6 +4,7 @@ This repo provide guidance for port road data and codes for attribute-aware open
 ## Requirements
 - Python >= 3.10
 - pytorch >= 2.1.0
+
 We have tested our project with two NVIDIA RTX 6000 Ada Generation. 
 
 ## Installation
