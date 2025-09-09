@@ -32,3 +32,6 @@ sh train_ppdd_ovd.sh
 ```bash
 sh test_ppdd_ovd.sh
 ```
+
+## Acknowledgement
+Our implementation is based on [OVAD](https://openaccess.thecvf.com/content/CVPR2023/papers/Bravo_Open-Vocabulary_Attribute_Detection_CVPR_2023_paper.pdf) ([github](https://github.com/csbdeep/csbdeep)).
