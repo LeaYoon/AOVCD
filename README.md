@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ## Dataset
 We analyze AOVCD model on [(PPDD Dataset)](https://github.com/LeaYoon/PPDD/blob/main/README.md). 
 
-PPDD Dataset download link : [Click here to try](https://drive.google.com/drive/folders/1jiR-q0W8wZvoQqv-a1otfEKdToatf6lZ?usp=sharing)
+PPDD Dataset download : For dataset inquiries, please contact Sanjin Kim (skim10@dau.ac.kr) as I am no longer maintaining this repository.
 
 To use PPDD data for our project, first you need to be processed into COCO-style. 
 We will upload soon after publishing paper and arranging project!
